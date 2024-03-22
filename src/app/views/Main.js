@@ -4,7 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import Navigation from "./components/Navigation"
 import Profile from "./components/Profile";
-import DailyExpense from "./components/DailyExpense";
+import DailyExpense from "./components/dailyExpense/DailyExpense"
+import EditProfile from "./components/profile/EditProfile";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,8 @@ const Main = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
-          <Stack.Screen name="Spend" component={DailyExpense} options={{ headerShown: false }} />
+          <Stack.Screen name="DailyExpense" component={DailyExpense} options={{ headerShown: false}} />
+          <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: true, title: 'Sửa Thông Tin', headerBackTitle:'Quay lại'}}/> 
         </Stack.Navigator>
         <Navigation/>
       </NavigationContainer>

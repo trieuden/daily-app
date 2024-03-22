@@ -2,6 +2,7 @@ import React from "react";
 import {Text, View, StyleSheet, TouchableOpacity, Image, ImageBackground } from "react-native";
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useNavigation } from "@react-navigation/native";
 
 
 const Profile = ({navigation}) => {
@@ -15,6 +16,10 @@ const Profile = ({navigation}) => {
   };
 
 const Header = () => {
+    const navigation = useNavigation();    
+    const navigateEditProfile = () => {
+        navigation.navigate('EditProfile');
+    }
     return(
         <View style={{overflow: "hidden", borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
             <ImageBackground style={styles.header}>
@@ -34,7 +39,7 @@ const Header = () => {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.header_touch}>
+                    <TouchableOpacity style={styles.header_touch} onPress={navigateEditProfile}>
                         <AntDesign name="edit" size={25} style={{margin:5}} />
                     </TouchableOpacity>
 
@@ -98,7 +103,7 @@ const data = [
 const Navigation = ({navigation}) => {
 
     const navigateToSpend = () => {
-        navigation.navigate('Spend');
+        navigation.navigate('DailyExpense');
     };
 
     return(
