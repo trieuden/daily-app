@@ -1,44 +1,36 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useState, useRef } from 'react';
+import { View, Text, Image, Modal, TouchableOpacity, ImageBackground, StyleSheet, Button, PanResponder, Dimensions } from 'react-native';
+import { Foundation, AntDesign, Ionicons, Feather, } from '@expo/vector-icons';
+import { styles } from '../../css/navigationStyle';
 import { useNavigation } from "@react-navigation/native";
 
 const Navigation = () => {
     const navigation = useNavigation();    
+    const navigateToBudget = () => {
+        navigation.navigate('Budget');
+    };
     const navigateToProfile = () => {
         navigation.navigate('Profile');
     };
 
-    return(
-        <View style={styles.main}>
-            <Icon icon={require('../../../../assets/icons/note.png')} height={22}/>
-            <Icon icon={require('../../../../assets/icons/search.png')} height={22} />
-            <Icon icon={require('../../../../assets/icons/profile.png')} height={35} onPress={navigateToProfile} />
-            <Icon icon={require('../../../../assets/icons/notification.png')} height={22}/>
-            <Icon icon={require('../../../../assets/icons/setting.png')} height={22} />
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.buttonForm} >
+                <AntDesign name="clockcircleo" size={26} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonForm} onPress={navigateToBudget}  >
+                <Foundation name="clipboard-notes" size={26} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonForm}  onPress={navigateToProfile}   >
+                <Feather name="user" size={38} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonForm} >
+                <Ionicons name="notifications-outline" size={26} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonForm} >
+                <AntDesign name="setting" size={26} color="black"/>
+            </TouchableOpacity>
         </View>
     )
 }
-
-
-const Icon = ({  icon, height, backgroundColor, onPress }) => {
-    return (
-        <TouchableOpacity style={{ backgroundColor: backgroundColor, padding: 7, borderRadius: 50 }} onPress={onPress}>
-            <Image style={{ height: height, width: height }} source={icon} />
-        </TouchableOpacity>
-    );
-  };
-  
-
-const styles = StyleSheet.create({
-    main: {
-        width: "100%",
-        height: 65,
-        backgroundColor: "#FFFFFF",
-        flexDirection:"row",
-        justifyContent:"space-around",
-        alignItems:"center",
-        borderTopWidth:1,
-        paddingBottom: 5
-    },
-});
-export default Navigation
+export default Navigation;

@@ -1,22 +1,20 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, Button, Alert } from 'react-native';
+import axios from 'axios';
+import Profile from './components/profile';
+import Navigation from './components/navigation';
+import Budget from './budget/budget';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
-import Navigation from "./components/Navigation"
-import Profile from "./components/Profile";
-import DailyExpense from "./components/dailyExpense/DailyExpense"
-import EditProfile from "./components/profile/EditProfile";
-
-const Stack = createStackNavigator();
 
 const Main = () => {
+  const Stack = createStackNavigator();
   return (
-    <View style={styles.container}>
+    <View style={{ height: '100%'}} >
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
-          <Stack.Screen name="DailyExpense" component={DailyExpense} options={{ headerShown: false}} />
-          <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: true, title: 'Sửa Thông Tin', headerBackTitle:'Quay lại'}}/> 
+          <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} />
         </Stack.Navigator>
         <Navigation/>
       </NavigationContainer>
@@ -24,12 +22,6 @@ const Main = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    paddingTop: 50,
-  }
-});
-
 export default Main;
+
+
