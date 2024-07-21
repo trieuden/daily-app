@@ -12,8 +12,8 @@ INSERT INTO `users` (`username`, `password`, `name`, `gender`, `phone`, `email`,
 ('manager1', 'managerpassword', 'Manager One', 2, '0123456789', 'manager1@gmail.com', '321 Lane, Village', 'manager_image.jpg', 2),
 ('manager2', 'managerpassword', 'Manager Two', 2, '5678901234', 'manager2@gmail.com', '654 Boulevard, Hamlet', 'manager_image.jpg', 2);
 
-INSERT INTO `spends` (`total`,`created_date`,`decription`, `user_id`) VALUES
-(10000,'2024-05-25', 'test',1);
+INSERT INTO `spends` (`total`,`created_date`, `user_id`) VALUES
+(10000,'2024-05-25',1);
 
 INSERT INTO `spend_types` (`name`, `image`, `price`) VALUES
 ('Ăn Sáng', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAMJSURBVFiF7dZbiFVlFAfw3xwvc0bTGYQ00knKC2mFRhGYWikVlhgJZqTSQyWWYC+iPUQEJaloBHYhFcsoSAe6PZhRRCiEdjPTqZgkrWlw1MjLjA2VYT6s7+Se7SgOZ8qX+cPmnL3W+tZ9rW/TjW5cYFSUcfYyTMQQ/I2vsBUn/0sHipiN+eiLLdiHStyEnrgHhzqp97wwA4dxEI+cRWYxNna14SvwoYh2DCbjG7wkIs6iIKIvp7TtcAOacQD78SIuRW+sx9vokZGvSA707grjU9CI8em9Bovwi8hCAXV4LHNmLD7vCuOP4ncsQXWOdw1+wm2YiTczvFcxr1zjNycDc/ACPu1AZhR2oh7XJ9p1+BFV5RgfjxYsFfUvoRrr0Ocs54r4Gnd01mAh879SRPwG/sFzIsoJOIbfRNMVnIl1aEhOXNRZJ0pYipdztIkirfem989wdU5mIVpxXCylRhxNTx0WiPKcEyNwAu/h2hxvKHbhHexFvwxvNv7ESLEBNyV6AR+kgJaLhm7Aw6JcZ6AOc3EffsBK7ZdMX9H1NRnanSI7z4tpqUjRX5z4g9EkdsKToryrMS5vfDT+wBOi2arwOt5Fr468xST8LKahFnsSfY2YnhLexy2ilJsz9KfF2lbAdLyC/tgtuv9+MQ2LOjB+q0jvQ/heLKaeIjv1ohwl1GO46I3aDP1ZUb6phaTwtWTsLrFiZ+JLXJ4zfjfWpui/y9BbRJla028JJ0Vp/tI+m0fFhfZ4AVdhR2LsFGv2ATHTyzKHForSzBJlasvwDiU9I8WNWUIbBqYsNOeC2YYr4YhzoweeSU6uEI23OCdzo8jIx8lgCbXi5mzE7bkzo5NO32pfnyyGJKUblLFgOsAwsbRmwFNYlROocvpC2oMHxXdBOagWZV0vMjKLaJCi6OoWbBeNNwUfifkdKkZrnPgWaBBfRc2imVqTgeMiS5XizuiXAqlNOov4Qoz3W0n+3y+XCkwTTdSET5KRPIpiaw7CJRjg9O1Xkxw6kZS3padJjOGv55+sbnTjf8Qpjq6pNDrULbwAAAAASUVORK5CYII=', 20000),
@@ -22,18 +22,18 @@ INSERT INTO `spend_types` (`name`, `image`, `price`) VALUES
 ('Vé xe', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACpSURBVFiF7ZZLDoMwDAVHnKBwjnLlCs7Bp+qlypIu6lRpMQuk2mThkbKJI72JIyWBICiIFpiBBViNxgJMkrUJtwzWRL4kJincgMvBzh2hBjrJGvNC2r1leC6xAs98MrXGi09etbPgwf/P/a4F7Qm4U9wRuBECIRACxQpoV7F6lVoJuJOe49ohq0F5jkeZ7IwlGqCXrCEvnPElu/7atbw7Yf0pHbTwIDiNF/TJoHIX5IWbAAAAAElFTkSuQmCC', 5000),
 ('Ăn Tối', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANOSURBVFiFvddZiJdVGAbw34wzammYSzZODhHZflFNRkWBRBHIVBREK3ghhpG2EJVQYGHUTVlRQWFEFOWNCdliZosXFeQYllpW44SlmZRthNk+dfEcbfb/zDD/ea6+5Xznfc/zPu9zzkd1MBPf4CnUVylGv3gZc7AH08qzOXgAEzoPrK1C8BNxHGrwLnYLI3dhCpZUIWYXPI2F2IpmjMXHuBif4ILOg4ebgSNwPvahHRtxH9bhQqzB2mGO2QX3YzE243ScjTap/2ZhY0g4AfOxCFdjai9jJojyr8OrGI9tuAI7RRc9UFMh8DQsw9FYje/L9Ww8J6v9s4y9HU2YhWsxF7/gDDwjLdkD/WmgAe9I3S7H36LwbULtdDxZFjEGC7BdWJiEs0pyu/sKXgkrhPJ5+AI34CIR1Vc4Da9LfediOT4UsW2XTmjHoUMJPl3oPrdMdqS013rciPOwBVfhA2mvu/EGnsdj+FJab9C4UhTbXib/VmhdISXYgV34HK3idj+VJJ7Av+V9a0l+i2imV3QWYS0exbG4RTy8CZ9hBh4WUe3AHaKRQ8RkTsLj6JByfC2q31kSGoVN+Kt7AnWdrueXgDfhWfxaVjCzrHa2mMhy8fo2fCf+/p4Y0FrcWubZgKMwDteIBe+S8vRgoL4Em4VXcGfJtlna7xIcLy35kmigsTx7UTqgQ2ifV+5bpJT1uBeXikZm4I/OtMOp+EiUvUFM5Z6SxEq8UGhuE3G2FKY68BqWSoe8hZOxqlC/RLqgFafg07KoLgyswplik/+USceWEuzFZPGAMeV+otR0D34TV9wnevgRh5dvfxA3HIffyze15Xq90iF1UuOZZfKRwMHCsv0JbJVd7P0RSuAY6RyEkk1S+5FCs3jDgQTW6scoqoAWvNn5wWgxjIYRCN4gXnDgoDpKlH+YlGFdlRNYLFp7u/uLKWKfjVUM3iirn9TXgJvF1SodUoaCGnHUBZUGrcFtVUhgkYi94uImiyVfP4zBF8hBZeJAP5gqx+kHpUOGitGyhW/U+yEWfVNykJwNzpEWXSrutczA//WaZJteKHvGoBLYj59xmZyM9sphdKAJrNTtP3Ao2CM72mAxXrbtiqir8P4R/x+rBoMaPDSQgf8B/w3IuU4SAB8AAAAASUVORK5CYII=', 40000);
 
-INSERT INTO `spend_items` (`spend_id`,`spend_type_id`,`price`) VALUES
-(1, 1,2000),
-(1, 2,2000),
-(1, 3,2000),
-(1, 4,2000),
-(1, 5,2000);
-INSERT INTO `daily_notifications` (`title`, `cycles`, `user_id`) VALUES
-('Notification One', 3, 1),
-('Notification Two', 2, 2),
-('Notification Three', 1, 3),
-('Notification Four', 2, 4),
-('Notification Five', 3, 5);
+INSERT INTO `spend_items` (`spend_id`,`spend_type_id`,`price`, `description`) VALUES
+(1, 1,2000,'test'),
+(1, 2,2000,'test'),
+(1, 3,2000,'test'),
+(1, 4,2000,'test'),
+(1, 5,2000,'test');
+INSERT INTO `notifications` (`title`, `content`,`created_date`,`status`, `user_id`) VALUES
+('Notification One', 'content 1', '2024-05-25', true, 1),
+('Notification Two', 'content 2', '2024-05-25', true, 2),
+('Notification Three', '', '2024-05-25', true, 3),
+('Notification Four', '', '2024-05-25', FALSE, 4),
+('Notification Five', '', '2024-05-25',FALSE, 5);
 
 INSERT INTO `notes` (`title`, `content`, `image`, `user_id`) VALUES
 ('Note One', 'Content for Note One', 'note1_image.jpg', 1),

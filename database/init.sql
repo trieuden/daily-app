@@ -1,4 +1,4 @@
--- Active: 1711168995727@@127.0.0.1@3306@daily_app
+-- Active: 1711168995727@@127.0.0.1@3306
 
 DROP DATABASE IF EXISTS daily_app;
 
@@ -17,7 +17,7 @@ CREATE TABLE `users` (
   `phone` varchar(10) NOT NULL,
   `email` varchar(100) NOT NULL,
   `address` varchar(100) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `image` longtext DEFAULT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `role_id` int NOT NULL,
@@ -39,7 +39,6 @@ CREATE TABLE `spends` (
   `id` int NOT NULL AUTO_INCREMENT,
   `total` double NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `decription` VARCHAR(255) DEFAULT NULL,
   `user_id` int NOT NULL,
     PRIMARY KEY (`id`)
 );
@@ -49,14 +48,16 @@ CREATE TABLE `spend_items` (
   `spend_id` int NOT NULL,
   `spend_type_id` int NOT NULL,
   `price` double NOT NULL,
+  `description` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `daily_notifications` (
+CREATE TABLE `notifications` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `cycles` int(11) NOT NULL,
+  `content` VARCHAR(100),
   `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` BOOLEAN NOT NULL,
   `user_id` int NOT NULL,
     PRIMARY KEY (`id`)
 );
@@ -83,7 +84,7 @@ ALTER TABLE `spend_items`
   ADD
   FOREIGN KEY (`spend_type_id`) REFERENCES `spend_types` (`id`);
 
-ALTER TABLE `daily_notifications`
+ALTER TABLE `notifications`
   ADD
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 

@@ -16,9 +16,9 @@ router.get('/getAllUsers', async (req, res) => {
 
 router.get('/getUserById', async (req, res) => {
     try {
-        const roleId = req.query.id;
+        const id = req.query.id;
         const sql = 'SELECT * FROM users WHERE id = ?';
-        db.query(sql, [roleId], (err, result) => {
+        db.query(sql, [id], (err, result) => {
             if (err) throw err;
             res.send(result);
         });

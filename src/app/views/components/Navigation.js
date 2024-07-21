@@ -2,16 +2,12 @@ import React, { useState, useRef } from 'react';
 import { View, Text, Image, Modal, TouchableOpacity, ImageBackground, StyleSheet, Button, PanResponder, Dimensions } from 'react-native';
 import { Foundation, AntDesign, Ionicons, Feather, } from '@expo/vector-icons';
 import { styles } from '../../css/navigationStyle';
-import { useNavigation } from "@react-navigation/native";
+
+import pageNavigation from '../../../utils/pageNavigation';
 
 const Navigation = () => {
-    const navigation = useNavigation();    
-    const navigateToBudget = () => {
-        navigation.navigate('Budget');
-    };
-    const navigateToProfile = () => {
-        navigation.navigate('Profile');
-    };
+    const {navigateToProfile, navigateToBudget, navigateToNotification, navigateToSetting} = pageNavigation();
+
 
     return (
         <View style={styles.container}>
@@ -24,10 +20,10 @@ const Navigation = () => {
             <TouchableOpacity style={styles.buttonForm}  onPress={navigateToProfile}   >
                 <Feather name="user" size={38} color="black" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonForm} >
+            <TouchableOpacity style={styles.buttonForm} onPress={navigateToNotification}>
                 <Ionicons name="notifications-outline" size={26} color="black" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonForm} >
+            <TouchableOpacity style={styles.buttonForm} onPress={navigateToSetting} >
                 <AntDesign name="setting" size={26} color="black"/>
             </TouchableOpacity>
         </View>

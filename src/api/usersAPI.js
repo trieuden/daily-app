@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { SERVER_IP } from '../config/config';
+
 
 class UsersAPI {
     constructor(apiUrl) {
-        this.ip = process.env.SERVER_IP || '10.10.0.63';
+        this.ip = SERVER_IP;
         this.apiUrl = 'http://' + this.ip + ':3306/users/';
     }
 
@@ -11,8 +13,8 @@ class UsersAPI {
             const response = await axios.get(this.apiUrl + 'getAllUsers');
             return response.data;
         } catch (error) {
-            console.error('Error fetching roles:', error);
-            throw new Error('Error fetching roles from the API');
+            console.error('Error fetching users:', error);
+            throw new Error('Error fetching users from the API');
         }
     }
 
@@ -21,8 +23,8 @@ class UsersAPI {
             const response = await axios.get(this.apiUrl + 'getUserById?id=' + id);
             return response.data;
         } catch (error) {
-            console.error('Error fetching roles:', error);
-            throw new Error('Error fetching roles from the API');
+            console.error('Error fetching users:', error);
+            throw new Error('Error fetching users from the API');
         }
     }  
     async addUser(user) {
@@ -32,8 +34,8 @@ class UsersAPI {
             });
 
         } catch (error) {
-            console.error('Error adding role:', error);
-            throw new Error('Error adding role via the API');
+            console.error('Error adding users:', error);
+            throw new Error('Error adding users via the API');
         }
     }
     async deleteUser(id) {
@@ -43,8 +45,8 @@ class UsersAPI {
             });
 
         } catch (error) {
-            console.error('Error delete role:', error);
-            throw new Error('Error delete role via the API');
+            console.error('Error delete users:', error);
+            throw new Error('Error delete users via the API');
         }
     }
     

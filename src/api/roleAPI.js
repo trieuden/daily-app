@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { SERVER_IP } from '../config/config';
 
 class RolesAPI {
     constructor(apiUrl) {
-        this.ip = process.env.SERVER_IP || '10.10.0.63';
+        this.ip = SERVER_IP ;
         this.apiUrl = 'http://' + this.ip + ':3306/roles/';
     }
 

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const bodyparser = require('body-parser');
@@ -6,6 +7,7 @@ const users = require('./routes/users');
 const spendTypes = require('./routes/spendTypes')
 const spends  = require('./routes/spends');
 const spendItems = require('./routes/spendItems')
+const notifications = require('./routes/notifications')
 
 const db = require('./db');
 
@@ -19,6 +21,7 @@ app.use('/users', users);
 app.use('/spendTypes', spendTypes);
 app.use('/spends', spends);
 app.use('/spendItems', spendItems);
+app.use('/notifications', notifications);
 
 
 const ip = process.env.SERVER_IP || '10.10.0.63';

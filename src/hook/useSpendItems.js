@@ -29,22 +29,25 @@ function useSpendItems() {
     };
 
     const getSpendItemById = async (id) => {
-        return await spendTypeAPI.getSpendItemById(id);
+        return await SpendItemsAPI.getSpendItemById(id);
     };
 
     // const deleteSpendTypeById = async (id) => {
     //     return await spendTypeAPI.deleteSpendTypeByID(id);
     // };
 
-    // const addSpendType = async (spendTypeData) => {
-    //     return await spendTypeAPI.addSpendType(spendTypeData);
-    // };
+    const addSpendItem = async (spendItem) => {
+        const spendItemsAPI = new SpendItemsAPI();
+        const newSpendItem = await spendItemsAPI.addSpendItem(spendItem)
+        return newSpendItem ;
+    };
 
     // Cung cấp các methods và state thông qua hook
     return {
         useSpendItemList,
         getSpendItemsBySpendId,
         getSpendItemById,
+        addSpendItem
         // deleteSpendTypeById,
         // addSpendType,
         // setSpendrTypes // cung cấp phương thức này để có thể cập nhật state từ UI

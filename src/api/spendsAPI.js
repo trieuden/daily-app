@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { SERVER_IP } from '../config/config';
+
 
 class SpendsAPI {
     constructor(apiUrl) {
-        this.ip = process.env.SERVER_IP || '10.10.0.63';
+        this.ip = SERVER_IP;
         this.apiUrl = 'http://' + this.ip + ':3306/spends/';
     }
 
@@ -11,8 +13,8 @@ class SpendsAPI {
             const response = await axios.get(this.apiUrl + 'getAllSpends');
             return response.data;
         } catch (error) {
-            console.error('Error fetching roles:', error);
-            throw new Error('Error fetching roles from the API');
+            console.error('Error fetching spends:', error);
+            throw new Error('Error fetching spends from the API');
         }
     }
 
@@ -21,19 +23,29 @@ class SpendsAPI {
             const response = await axios.get(this.apiUrl + 'getSpendById?id=' + id);
             return response.data;
         } catch (error) {
-            console.error('Error fetching roles:', error);
-            throw new Error('Error fetching roles from the API');
+            console.error('Error fetching spends:', error);
+            throw new Error('Error fetching spends from the API');
         }
     }  
+    async getSpendByUserId(userId) {
+        try {
+            const response = await axios.get(this.apiUrl + 'getSpendByUserId?user_id=' + userId);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching spends:', error);
+            throw new Error('Error fetching spends from the API');
+        }
+    }  
+
     async addSpend(spend) {
         try {
-            await axios.post(this.apiUrl + 'addSpend', {
+            const response = await axios.post(this.apiUrl + 'addSpend', {
                 data: spend
             });
-
+            return response;
         } catch (error) {
-            console.error('Error adding role:', error);
-            throw new Error('Error adding role via the API');
+            console.error('Error adding spends:', error);
+            throw new Error('Error adding spends via the API');
         }
     }
     async deleteSpend(id) {
@@ -43,10 +55,22 @@ class SpendsAPI {
             });
 
         } catch (error) {
-            console.error('Error delete role:', error);
-            throw new Error('Error delete role via the API');
+            console.error('Error delete spends:', error);
+            throw new Error('Error delete spends via the API');
         }
     }
+    async updateSpend(spend) {
+        try {
+            const response = await axios.post(this.apiUrl + 'updateSpend', {
+                data: spend,
+            });
+            return response
+        } catch (error) {
+            console.error('Error delete spends:', error);
+            throw new Error('Error delete spends via the API');
+        }
+    }
+    
     
 }
 

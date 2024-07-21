@@ -6,9 +6,9 @@ import useSpendItems from '../../../hook/useSpendItems';
 import useSpendTypes from '../../../hook/useSpendTypes';
 
 import TimestampConverter from '../../../utils/timestampConverter';
-import { styles } from '../../css/budget/budgetStyle';
+import { styles } from '../../css/budget/spendStyle';
 
-const SpendItem = ({ spendItem }) => {
+const SpendItem = ({ spendItem, refreshKey }) => {
     const { getSpendTypeById } = useSpendTypes();
 
     const [spendType, setSpendType] = useState(null);
@@ -18,7 +18,7 @@ const SpendItem = ({ spendItem }) => {
             setSpendType(item)
         }
         fetchSpendTypes()
-    }, [spendItem])
+    }, [spendItem, refreshKey])
     return (
         <>
             {spendType != null ?
@@ -47,7 +47,7 @@ const SpendItem = ({ spendItem }) => {
     )
 }
 
-const Spend = ({ spend }) => {
+const Spend = ({ spend, refreshKey }) => {
     const { getSpendItemsBySpendId } = useSpendItems();
     const [spendItemList, setSpendItemList] = useState([]);
 
@@ -58,7 +58,7 @@ const Spend = ({ spend }) => {
         };
 
         fetchSpendItems();
-    }, [spend]);
+    }, [spend, refreshKey]);
 
     return (
         <View>
@@ -69,7 +69,7 @@ const Spend = ({ spend }) => {
                 <Text style={styles.spend_date_total}>{spend.total.toLocaleString('vi-VN')} đ</Text>
             </View>
             {spendItemList != null && spendItemList.length > 0 ? (
-                spendItemList.map((spendItem) => (
+                [...spendItemList].reverse().map((spendItem) => (
                     <SpendItem spendItem={spendItem} key={spendItem.id} />
                 ))
             ) : (

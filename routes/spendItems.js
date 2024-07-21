@@ -28,9 +28,9 @@ router.get('/getSpendItemById', async (req, res) => {
 });
 router.post('/addSpendItem', (req, res) => {
     try {
-        var data = [req.body.data];
-        var sql = 'INSERT INTO `spend_items`(`spend_id, spend_type_id, price`) VALUES (?,?,?)';
-        db.query(sql, [data], (err, result) => {
+        var data = req.body.data;
+        var sql = 'INSERT INTO `spend_items`(spend_id, spend_type_id, price, description) VALUES (?,?,?,?)';
+        db.query(sql, [data.spend_id, data.spend_type_id, data.price, data.description], (err, result) => {
             if (err) throw err;
             res.send(result);
         })

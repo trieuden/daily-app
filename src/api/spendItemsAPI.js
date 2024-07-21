@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { SERVER_IP } from '../config/config';
+
 
 class SpendItemsAPI {
     constructor(apiUrl) {
-        this.ip = process.env.SERVER_IP || '10.10.0.63';
+        this.ip = SERVER_IP;
         this.apiUrl = 'http://' + this.ip + ':3306/spendItems/';
     }
 
@@ -11,8 +13,8 @@ class SpendItemsAPI {
             const response = await axios.get(this.apiUrl + 'getAllSpendItems');
             return response.data;
         } catch (error) {
-            console.error('Error fetching roles:', error);
-            throw new Error('Error fetching roles from the API');
+            console.error('Error fetching spendItems:', error);
+            throw new Error('Error fetching spendItems from the API');
         }
     }
 
@@ -21,19 +23,20 @@ class SpendItemsAPI {
             const response = await axios.get(this.apiUrl + 'getSpendItemById?id=' + id);
             return response.data;
         } catch (error) {
-            console.error('Error fetching roles:', error);
-            throw new Error('Error fetching roles from the API');
+            console.error('Error fetching spendItems:', error);
+            throw new Error('Error fetching spendItems from the API');
         }
     }  
     async addSpendItem(spendItem) {
         try {
-            await axios.post(this.apiUrl + 'addSpendItem', {
+            const response = await axios.post(this.apiUrl + 'addSpendItem', {
                 data: spendItem
             });
+            return response;
 
         } catch (error) {
-            console.error('Error adding role:', error);
-            throw new Error('Error adding role via the API');
+            console.error('Error adding spendItems:', error);
+            throw new Error('Error adding spendItems via the API');
         }
     }
     async deleteSpendItem(id) {
@@ -43,8 +46,8 @@ class SpendItemsAPI {
             });
 
         } catch (error) {
-            console.error('Error delete role:', error);
-            throw new Error('Error delete role via the API');
+            console.error('Error delete spendItems:', error);
+            throw new Error('Error delete spendItems via the API');
         }
     }
     
