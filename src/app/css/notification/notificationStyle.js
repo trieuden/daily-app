@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
         overflow: 'hidden',
         marginVertical: 4,
         height: 60,
-        borderWidth: 1,
         borderColor: '#00e699',
         paddingHorizontal: 5,
         borderRadius: 5,

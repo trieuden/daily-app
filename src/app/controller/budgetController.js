@@ -38,7 +38,7 @@ const BudgetController = async (currentAccount, currentType, moneySpent, descrip
         user_id: currentAccount.id
     }
 
-    await updateSpend(newSpendr);
+    await updateSpend(newSpend);
 
     return { status: true, value: 'Success !', data: spendItem};
 };

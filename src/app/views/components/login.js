@@ -22,7 +22,7 @@ const Login = ({ setKey }) => {
 
 
     const login = async () => {
-        const loginHandle = await loginController(username, password, userList);
+        const loginHandle = loginController(username, password, userList);
         if(loginHandle.status == true){
             await AsyncStorage.setItem('currentAccount', loginHandle.value.toString());
             setKey(loginHandle.value);

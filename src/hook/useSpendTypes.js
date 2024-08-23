@@ -28,17 +28,16 @@ function useSpendTypes() {
     //     return await spendTypeAPI.deleteSpendTypeByID(id);
     // };
 
-    // const addSpendType = async (spendTypeData) => {
-    //     return await spendTypeAPI.addSpendType(spendTypeData);
-    // };
+    const addSpendType = async (spendType) => {
+        return await spendTypeAPI.addSpendType(spendType);
+    };
 
     // Cung cấp các methods và state thông qua hook
     return {
         useSpendTypesList,
         getSpendTypeById,
         // deleteSpendTypeById,
-        // addSpendType,
-        // setSpendrTypes // cung cấp phương thức này để có thể cập nhật state từ UI
+        addSpendType,
     };
 }
 

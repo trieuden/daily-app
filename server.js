@@ -8,12 +8,14 @@ const spendTypes = require('./routes/spendTypes')
 const spends  = require('./routes/spends');
 const spendItems = require('./routes/spendItems')
 const notifications = require('./routes/notifications')
+const incomes = require('./routes/incomes')
+const icomeItems = require('./routes/incomeItem')
 
 const db = require('./db');
 
 const app = express();
 
-app.use(bodyparser.json());
+app.use(bodyparser.json({ limit: '10mb' }));
 app.use(cors());
 
 app.use('/roles', roles);
@@ -22,6 +24,8 @@ app.use('/spendTypes', spendTypes);
 app.use('/spends', spends);
 app.use('/spendItems', spendItems);
 app.use('/notifications', notifications);
+app.use('/incomes', incomes);
+app.use('/incomeItems', icomeItems);
 
 
 const ip = process.env.SERVER_IP || '10.10.0.63';

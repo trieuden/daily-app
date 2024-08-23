@@ -3,22 +3,21 @@ import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Profile from './profile/profile';
+import Account from './account/account';
 import Navigation from './components/navigation';
 import Budget from './budget/budget';
 import Notification from './notification/notification';
 import Setting from './setting/setting';
-import Login from './components/login';
 
 const Main = ({setKey}) => {
 
   const Stack = createStackNavigator();
 
   return (
-    <View style={{ height: '100%' }}>
+    <View style={{ height: '100%'}}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+          <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
           <Stack.Screen name="Notification" component={Notification} options={{ headerShown: false }} />
           <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} />
           <Stack.Screen name="Setting" options={{ headerShown: false }} >

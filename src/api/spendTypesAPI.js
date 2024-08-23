@@ -24,7 +24,18 @@ class SpendTypesAPI {
             console.error('Error fetching spendTypes:', error);
             throw new Error('Error fetching spendTypes from the API');
         }
-    }  
+    }
+    async addSpendType(spendType) {
+        try {
+            const response = await axios.post(this.apiUrl + 'addSpendType', {
+                data: spendType
+            });
+            return response;
+        } catch (error) {
+            console.error('Error adding spend type:', error);
+            throw new Error('Error adding spend type via the API');
+        }
+    }
 }
 
 export default SpendTypesAPI;

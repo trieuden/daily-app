@@ -10,8 +10,8 @@ function useSpendItems() {
         const fetchSpendItems = async () => {
             try {
                 const spendItemsAPI = new SpendItemsAPI();
-                const spendTypeItems = await spendItemsAPI.getAllSpendItems();
-                setUseSpendItemList(spendTypeItems);
+                const spendItems = await spendItemsAPI.getAllSpendItems();
+                setUseSpendItemList(spendItems);
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
@@ -22,8 +22,8 @@ function useSpendItems() {
 
     const getSpendItemsBySpendId = async (spend_id) => {
         const spendItemsAPI = new SpendItemsAPI();
-        const spendTypeItems = await spendItemsAPI.getAllSpendItems();
-        const filteredItems = spendTypeItems.filter(spendItem => spendItem.spend_id === spend_id);
+        const spendItems = await spendItemsAPI.getAllSpendItems();
+        const filteredItems = spendItems.filter(spendItem => spendItem.spend_id === spend_id);
         setUseSpendItemBySpendId(filteredItems);
         return filteredItems;
     };

@@ -22,8 +22,9 @@ const Setting = ({setKey}) => {
         <SectionList
             sections={[{ title: 'Main', data: [{}] }]}
             keyExtractor={(item, index) => index.toString()}
+            style={styles.container} 
             renderItem={() => (
-                <View style={styles.container} >
+                <View>
                     <Text style={styles.title} >Setting</Text>
                     <View style={styles.setting} >
                         <FontAwesome6 name="circle-user" size={28} color="black" style={styles.icon} />

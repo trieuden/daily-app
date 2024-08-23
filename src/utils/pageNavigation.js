@@ -9,7 +9,7 @@ function pageNavigation() {
         navigation.navigate('Budget');
     };
     const navigateToProfile = () => {
-        navigation.navigate('Profile');
+        navigation.navigate('Account');
     };
     const navigateToNotification = () => {
         navigation.navigate('Notification');
