@@ -23,7 +23,8 @@ function useIncomes() {
     }, []);
 
     const getIncomeById = async (id) => {
-        return await incomesAPI.getIncomeById(id);
+        const income = await incomesAPI.getIncomeById(id)
+        return income[0];
     };
 
     const getIncomesByUserId = async (userId) => {
@@ -34,10 +35,10 @@ function useIncomes() {
     const getIncomeByDate = async (date) => {
         const incomesAPI = new IncomesAPI();
         const incomes = await incomesAPI.getAllIncomes();
-        const dateToCompare = TimestampConverter.convert(date).newDate;
+        const dateToCompare = TimestampConverter.convert(date).newMonth;
 
         for (let incomeItem of incomes) {
-            if (TimestampConverter.convert(incomeItem.month).newDate === dateToCompare) {
+            if (TimestampConverter.convert(incomeItem.month).newMonth === dateToCompare) {
                 return incomeItem;
             }
         }
@@ -62,7 +63,7 @@ function useIncomes() {
         const incomesAPI = new IncomesAPI();
         const incomes = await incomesAPI.updateIncome(income);
         const incomeList = await incomesAPI.getAllIncomes();
-        setUseSpendList(incomeList);
+        setUseIncomeList(incomeList);
         return incomes
     }
 

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         height: '100%',
         width: '100%',
-        backgroundColor: '#d9d9d9',
+        backgroundColor: '#f2f2f2',
         position: 'relative',
         display: 'flex',
     },
@@ -14,15 +14,17 @@ export const styles = StyleSheet.create({
         width: '100%',
         borderBottomEndRadius: 20,
         borderBottomStartRadius: 20,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginTop: 50
     },
     imageBackground: {
         height: '100%'
     },
     title: {
         fontSize: 24,
-        color: 'white',
-        margin: 50
+        fontWeight: '400',
+        color: '#b3b3b3',
+        marginHorizontal: 24
     },
     infor: {
         width: '90%',
@@ -31,7 +33,10 @@ export const styles = StyleSheet.create({
         height: '70%',
         right: '5%',
         top: 170,
-        borderRadius: '15'
+        borderRadius: '15',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
     },
     avatarForm: {
         display: 'flex',
@@ -67,7 +72,7 @@ export const styles = StyleSheet.create({
     },
     modalForm: {
         display: 'flex',
-        flexDirection:'column',
+        flexDirection: 'column',
         paddingHorizontal: 20,
     },
     modal: {
@@ -90,7 +95,6 @@ export const styles = StyleSheet.create({
     },
     centeredView: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        justifyContent:'flex-end'
+        justifyContent: 'flex-end'
     },
 });

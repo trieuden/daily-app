@@ -35,7 +35,7 @@ function useIncomeItems() {
 
     const addIncomeItem = async (incomeItem) => {
         const incomeItemsAPI = new IncomeItemsAPI();
-        const newIncomeItem = await incomeItemsAPI.addIncomeItem(incomeItem)
+        const newIncomeItem = await incomeItemsAPI.addIncomeItem(incomeItem)        
         return newIncomeItem ;
     };
 

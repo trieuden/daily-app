@@ -6,8 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Account from './account/account';
 import Navigation from './components/navigation';
 import Budget from './budget/budget';
-import Notification from './notification/notification';
 import Setting from './setting/setting';
+import Overview from './overview/overview';
 
 const Main = ({setKey}) => {
 
@@ -18,8 +18,8 @@ const Main = ({setKey}) => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
-          <Stack.Screen name="Notification" component={Notification} options={{ headerShown: false }} />
           <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} />
+          <Stack.Screen name="Overview" component={Overview} options={{ headerShown: false }} />
           <Stack.Screen name="Setting" options={{ headerShown: false }} >
             {(props) => <Setting {...props} setKey={setKey} />}
           </Stack.Screen>

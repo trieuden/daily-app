@@ -2,17 +2,16 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList, SectionList, SafeAreaView, Alert } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import BudgetController from '../../controller/budgetController';
+import SpendsController from '../../../controller/spendsController';
 
-import useSpendTypes from '../../../hook/useSpendTypes';
-import useSpends from '../../../hook/useSpends';
-import useSpendItems from '../../../hook/useSpendItems';
+import useSpendTypes from '../../../../hook/useSpendTypes';
+import useSpends from '../../../../hook/useSpends';
 
-import { styles } from '../../css/budget/spendsStyle';
+import { styles } from '../../../css/budget/spend/spendsStyle';
 import Spend from './spend';
-import useCurrentAccount from '../../../utils/useCurrentAccount';
+import useCurrentAccount from '../../../../utils/useCurrentAccount';
 import { Modal } from 'react-native';
-import NewSpendType from './newSpendTyle';
+import NewSpendType from './newSpendType';
 
 const Spends = () => {
     const [refreshKey, setRefreshKey] = useState(0);
@@ -27,11 +26,13 @@ const Spends = () => {
     const [spendList, setSpendList] = useState([]);
 
     const { useSpendTypesList } = useSpendTypes();
-    const { useSpendList, getSpendByDate, addSpend, getSpendMax, updateSpend, getSpendTypeByUserId } = useSpends();
-    const { addSpendItem } = useSpendItems();
+    const { getSpendTypeByUserId } = useSpends();
 
     const [modalVisible, setModalVisible] = useState(false);
 
+    //controlller
+
+    const {newSpendAction} = SpendsController();
 
     const currentAccount = useCurrentAccount();
 
@@ -54,11 +55,11 @@ const Spends = () => {
     }, []);
 
     const handleNewSpend = async () => {
-        try {
-            const budgetController = await BudgetController(currentAccount, currentType, moneySpent, description, getSpendByDate, currentDate, addSpend, addSpendItem, updateSpend);
-            setRefreshKey(budgetController.data);
+        try {            
+            const spendsController = await newSpendAction(currentAccount, currentType, moneySpent, description, currentDate);
+            setRefreshKey(spendsController.data);
 
-            Alert.alert('App', budgetController.value, [
+            Alert.alert('App', spendsController.value, [
                 { text: 'OK' },
             ]);
 
@@ -162,7 +163,7 @@ const Spends = () => {
             <View style={styles.spendList}>
                 {spendComponents}
             </View>
-            <Modal animationType="slide" transparent={true} visible={modalVisible}>
+            <Modal animationType="fade" transparent={true} visible={modalVisible}>
                 <NewSpendType onCloseModal={handleCloseModal}/>
             </Modal>
         </View>

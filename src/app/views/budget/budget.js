@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, FlatList, SectionList, SafeAreaView, Alert, StyleSheet } from 'react-native';
 
-import Spends from './spends';
-import Incomes from './incomes';
+import Spends from './spend/spends';
+import Incomes from './income/incomes';
 
 import { styles } from '../../css/budget/budgetStyle';
 

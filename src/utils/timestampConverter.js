@@ -11,13 +11,19 @@ export default class TimestampConverter {
         const newFullDate = minutes + ':' + hours + ' ' + day + '-' + month + '-' + year;
         const newDate =  day + '-' + month + '-' + year;
         const newHours = minutes + ':' + hours ;
-        const newMonth = month + '-' + year     
+        const newMonth = month + '-' + year ;
+        const newOnlyDay = day;     
+        const newOnlyMonth = month;     
+        const newOnlyYear = year;     
 
         return {
             newFullDate,
             newHours,
             newDate,
-            newMonth
+            newMonth,
+            newOnlyDay,
+            newOnlyMonth,
+            newOnlyYear
         };
     }
 }

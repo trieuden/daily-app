@@ -66,8 +66,8 @@ class IncomesAPI {
             });
             return response
         } catch (error) {
-            console.error('Error delete incomes:', error);
-            throw new Error('Error delete incomes via the API');
+            console.error('Error update incomes:', error);
+            throw new Error('Error update incomes via the API');
         }
     }
     

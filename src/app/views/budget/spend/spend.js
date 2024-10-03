@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-import useSpendItems from '../../../hook/useSpendItems';
-import useSpendTypes from '../../../hook/useSpendTypes';
+import useSpendItems from '../../../../hook/useSpendItems';
+import useSpendTypes from '../../../../hook/useSpendTypes';
 
-import TimestampConverter from '../../../utils/timestampConverter';
-import { styles } from '../../css/budget/spendStyle';
+import TimestampConverter from '../../../../utils/timestampConverter';
+import { styles } from '../../../css/budget/spend/spendStyle';
 
 const SpendItem = ({ spendItem, refreshKey }) => {
     const { getSpendTypeById } = useSpendTypes();

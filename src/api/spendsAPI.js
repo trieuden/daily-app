@@ -71,6 +71,35 @@ class SpendsAPI {
         }
     }
     
+    async getSpendByUserIdAndBetweenDate(userId, startDate, endDate){
+        try {
+            const response = await axios.get(this.apiUrl + 'getSpendByUserIdAndBetweenDate', {
+                params: {
+                    userId: userId,
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            });
+            return response
+        } catch (error) {
+            console.error('Error get spends:', error);
+            throw new Error('Error get spends via the API');
+        }
+    }
+    async getSpendByUserIdAndDate(userId, date) {
+        try {
+            const response = await axios.get(this.apiUrl + 'getSpendByUserIdAndDate', {
+                params: {
+                    userId: userId,
+                    date: date
+                }
+            })
+            return response[0]
+        } catch (error) {
+            console.error('Error get spends:', error);
+            throw new Error('Error get spends via the API');
+        }
+    }
     
 }
 

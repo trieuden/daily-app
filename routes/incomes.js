@@ -64,9 +64,9 @@ router.post('/deleteIncome', (req, res) => {
 })
 router.post('/updateIncome', (req, res) => {
     try {
-        const { total, created_date, user_id, id } = req.body.data;
+        const { total, month, user_id, id } = req.body.data;
         const sql = 'UPDATE incomes SET user_id = ?, month = ?, total = ? WHERE id = ?';
-        db.query(sql, [total, created_date, user_id, id], (err, result) => {
+        db.query(sql, [user_id, month, total, id], (err, result) => {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;

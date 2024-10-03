@@ -77,6 +77,32 @@ router.post('/updateSpend', (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+router.get('/getSpendByUserIdAndBetweenDate', async (req, res) => {
+    try {
+        const { userId, startDate, endDate} = req.query;
+        const sql = `SELECT * FROM spends WHERE user_id = ? AND created_date BETWEEN ? AND ?`;
+        db.query(sql, [userId, startDate, endDate], (err, result) => {
+            if (err) throw err; 
+            res.send(result);
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+router.get('/getSpendByUserIdAndDate', async (req, res) => {
+    try {
+        const { userId, date} = req.query
+        const sql = `SELECT * FROM spends WHERE user_id = ? AND created_date = ?`;
+        db.query(sql, [userId, date], (err, result) => {
+            if (err) throw err;
+            res.send(result)
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
+
 
 
 module.exports = router;

@@ -97,13 +97,13 @@ export const styles = StyleSheet.create({
         width: 100,
         marginVertical: 15,
         alignSelf: 'flex-end',
-        borderRadius: 12,
+        borderRadius: 16,
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         borderEndColor:'#006633',
         borderBottomColor:'#001a0d',
-        backgroundColor:'#d9d9d9'
+        backgroundColor:'#00cc88'
     },
     buttonSave_title: {
         fontWeight: 'bold',

@@ -4,15 +4,15 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 
-import NewSpendTypeController from "../../controller/newSpendTypeController";
-import useSpendTypes from "../../../hook/useSpendTypes";
+import SpendTypeController from "../../../controller/spendTypeController";
+import useSpendTypes from "../../../../hook/useSpendTypes";
 
-import { ConvertToBase64 } from "../../../utils/convertToBase64";
+import { ConvertToBase64 } from "../../../../utils/convertToBase64";
 
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { captureRef } from 'react-native-view-shot';
 
-import { styles } from "../../css/budget/newSpendTypeStyle";
+import { styles } from "../../../css/budget/spend/newSpendTypeStyle";
 
 const NewSpendType = ({ onCloseModal }) => {
     const [imageUri, setImageUri] = useState();
@@ -25,6 +25,9 @@ const NewSpendType = ({ onCloseModal }) => {
     const iconRef = useRef(null);
 
     const { addSpendType } = useSpendTypes();
+
+    //controlller
+    const {NewSpendTypeAction} = SpendTypeController()
 
     const icons = ['home', 'star', 'heart', 'camera', 'bell', 'check', 'home', 'star', 'heart', 'camera', 'bell', 'check'];
 
@@ -59,8 +62,8 @@ const NewSpendType = ({ onCloseModal }) => {
     const handleNewSpendType = async () => {
         try {
             const imageLength = base64Image.length;
-            var newSpendTyleController = await NewSpendTypeController(addSpendType, name, price, base64Image, imageLength);
-            Alert.alert('App', newSpendTyleController.value, [
+            var newSpendTypeAction = await NewSpendTypeAction(addSpendType, name, price, base64Image, imageLength);
+            Alert.alert('App', newSpendTypeAction.value, [
                 { text: 'OK' },
             ]);
             onCloseModal(false)

@@ -5,6 +5,8 @@ import TimestampConverter from '../utils/timestampConverter';
 function useSpends() {
     const [useSpendList, setUseSpendList] = useState(null);
     const [spend, setSpend] = useState(null);
+    const [spendMonthList, setSpendMonthList] = useState(null);
+
 
     const spendsAPI = new SpendsAPI();
 
@@ -44,6 +46,23 @@ function useSpends() {
         return null;
     };
 
+    const getSpendByMonth = async (month) => {
+        let newSpendList = [];
+
+        const spendsAPI = new SpendsAPI();
+        const spends = await spendsAPI.getAllSpends();
+
+        const dateToCompare = TimestampConverter.convert(month).newMonth;
+
+        for (let spendItem of spends) {
+            if (TimestampConverter.convert(spendItem.created_date).newMonth === dateToCompare) {
+                newSpendList.push(spendItem);
+            }
+        }
+        return newSpendList;
+
+    }
+
     // const deleteSpendTypeById = async (id) => {
     //     return await spendTypeAPI.deleteSpendTypeByID(id);
     // };
@@ -66,6 +85,16 @@ function useSpends() {
         return spends
     }
 
+    const getSpendByUserIdAndBetweenDate = async (userId, startDate, endDate) => {
+        const spends = await spendsAPI.getSpendByUserIdAndBetweenDate(userId, startDate, endDate);
+        return spends.data
+    }
+
+    const getSpendByUserIdAndDate = async (userId, date) => {
+        const spends = await spendsAPI.getSpendByUserIdAndDate(userId, date);
+        return spends.data
+    }
+
     // Cung cấp các methods và state thông qua hook
     return {
         useSpendList,
@@ -75,9 +104,9 @@ function useSpends() {
         addSpend,
         getSpendMax,
         updateSpend,
-        // deleteSpendTypeById,
-        // addSpendType,
-        // setSpendrTypes // cung cấp phương thức này để có thể cập nhật state từ UI
+        getSpendByMonth,
+        getSpendByUserIdAndBetweenDate,
+        getSpendByUserIdAndDate
     };
 }
 

@@ -11,8 +11,8 @@ function pageNavigation() {
     const navigateToProfile = () => {
         navigation.navigate('Account');
     };
-    const navigateToNotification = () => {
-        navigation.navigate('Notification');
+    const navigateToOverview = () => {
+        navigation.navigate('Overview');
     };
     const navigateToSetting = () => {
         navigation.navigate('Setting');
@@ -23,7 +23,7 @@ function pageNavigation() {
     return {
         navigateToBudget,
         navigateToProfile,
-        navigateToNotification,
+        navigateToOverview,
         navigateToSetting,
         navigateToLogin
     }

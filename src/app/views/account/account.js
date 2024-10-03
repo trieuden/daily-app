@@ -5,9 +5,6 @@ import { FontAwesome, AntDesign, MaterialIcons, Feather } from '@expo/vector-ico
 import { styles } from '../../css/account/accountStyle';
 import getCurrentAccount from '../../../utils/useCurrentAccount';
 
-import Profile from './profile/profile';
-import EditProfile from './editProfile';
-
 const imageBackground = require('../../../../assets/images/imageBackground.png');
 
 const Account = () => {
@@ -27,10 +24,6 @@ const Account = () => {
 
     const renderModalContent = useMemo(() => {
         switch (modalView) {
-            case 'Profile':
-                return <Profile onCloseModal={handleCloseModal} />;
-            case 'EditProfile':
-                return <EditProfile onCloseModal={handleCloseModal} />;
             default:
                 return null;
         }
@@ -51,40 +44,33 @@ const Account = () => {
                                 <View style={styles.avatarForm}>
                                     <FontAwesome name="camera" size={24} color="black" />
                                     <Image source={{ uri: currentAccount.image }} style={styles.avatar} />
-                                    <AntDesign name="edit" size={24} color="black"  onPress={() => handleOpenModal('EditProfile')} />
+                                    <AntDesign name="edit" size={24} color="black"/>
                                 </View>
                                 <View style={styles.nameForm}>
                                     <Text style={styles.name}>{currentAccount.name}</Text>
                                     <Text style={styles.email}>{currentAccount.email}</Text>
                                 </View>
                                 <View style={styles.modalForm}>
-                                    <TouchableOpacity style={styles.modal} onPress={() => handleOpenModal('Profile')}>
+                                    <TouchableOpacity style={styles.modal}>
                                         <View style={styles.modal_item}>
-                                            <MaterialIcons name="account-box" size={24} color="#999999" />
+                                            <MaterialIcons name="account-box" size={23} color="#999999" />
                                             <Text style={styles.modal_text}>Account</Text>
                                         </View>
-                                        <MaterialIcons name="navigate-next" size={34} color="black" />
+                                        <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </TouchableOpacity>
                                     <View style={styles.modal}>
                                         <View style={styles.modal_item}>
-                                            <Feather name="share-2" size={24} color="#999999" />
+                                            <Feather name="share-2" size={23} color="#999999" />
                                             <Text style={styles.modal_text}>Share your profile</Text>
                                         </View>
-                                        <MaterialIcons name="navigate-next" size={34} color="black" />
+                                        <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </View>
-                                    <TouchableOpacity style={styles.modal} >
-                                        <View style={styles.modal_item}>
-                                            <AntDesign name="setting" size={24} color="#999999" />
-                                            <Text style={styles.modal_text}>Setting</Text>
-                                        </View>
-                                        <MaterialIcons name="navigate-next" size={34} color="black" />
-                                    </TouchableOpacity>
                                     <View style={styles.modal}>
                                         <View style={styles.modal_item}>
-                                            <AntDesign name="exclamationcircle" size={24} color="#999999" />
+                                            <AntDesign name="exclamationcircle" size={23} color="#999999" />
                                             <Text style={styles.modal_text}>Feedback</Text>
                                         </View>
-                                        <MaterialIcons name="navigate-next" size={34} color="black" />
+                                        <MaterialIcons name="navigate-next" size={30} color="black" />
                                     </View>
                                 </View>
                             </View>
