@@ -2,14 +2,14 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const bodyparser = require('body-parser');
-const roles = require('./routes/roles');
-const users = require('./routes/users');
-const spendTypes = require('./routes/spendTypes')
-const spends  = require('./routes/spends');
-const spendItems = require('./routes/spendItems')
-const notifications = require('./routes/notifications')
-const incomes = require('./routes/incomes')
-const icomeItems = require('./routes/incomeItem')
+const roles = require('./src/routes/Roles');
+const users = require('./src/routes/Users');
+const spendTypes = require('./src/routes/SpendTypes')
+const spends  = require('./src/routes/Spends');
+const spendItems = require('./src/routes/SpendItems')
+const notifications = require('./src/routes/Notifications')
+const incomes = require('./src/routes/Incomes')
+const icomeItems = require('./src/routes/IncomeItem')
 
 const db = require('./db');
 

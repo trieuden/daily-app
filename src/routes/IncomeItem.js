@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 
-router.get('/getAllSpendItems', async (req, res) => {
+router.get('/getAllIncomeItems', async (req, res) => {
     try {
-        const sql = 'SELECT * FROM spend_items';
+        const sql = 'SELECT * FROM income_items';
         db.query(sql, (err, result) => {
             if (err) throw err;
             res.send(result);
@@ -14,11 +14,11 @@ router.get('/getAllSpendItems', async (req, res) => {
     }
 });
 
-router.get('/getSpendItemById', async (req, res) => {
+router.get('/getIncomeItemById', async (req, res) => {
     try {
-        const roleId = req.query.id;
-        const sql = 'SELECT * FROM spend_items WHERE id = ?';
-        db.query(sql, [roleId], (err, result) => {
+        const id = req.query.id;
+        const sql = 'SELECT * FROM income_items WHERE id = ?';
+        db.query(sql, [id], (err, result) => {
             if (err) throw err;
             res.send(result);
         });
@@ -26,11 +26,11 @@ router.get('/getSpendItemById', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-router.post('/addSpendItem', (req, res) => {
+router.post('/addIncomeItem', (req, res) => {
     try {
         var data = req.body.data;
-        var sql = 'INSERT INTO `spend_items`(spend_id, spend_type_id, price, description) VALUES (?,?,?,?)';
-        db.query(sql, [data.spend_id, data.spend_type_id, data.price, data.description], (err, result) => {
+        var sql = 'INSERT INTO `income_items`(income_id, name, created_date, price) VALUES (?,?,?,?)';
+        db.query(sql, [data.income_id, data.name, data.created_date, data.price], (err, result) => {
             if (err) throw err;
             res.send(result);
         })
@@ -38,10 +38,10 @@ router.post('/addSpendItem', (req, res) => {
         res.status(500).json({ error: error.message });
     }
 })
-router.post('/deleteSpendItem', (req, res) => {
+router.post('/deleteIncomeItem', (req, res) => {
     try {
         var data = [req.body.id];
-        var sql = 'DELETE FROM spend_items WHERE id = ?';
+        var sql = 'DELETE FROM income_items WHERE id = ?';
         db.query(sql, [data], (err, result) => {
             if (err) throw err;
             res.send(result);

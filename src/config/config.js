@@ -1,1 +1,0 @@
-export const SERVER_IP = '10.10.0.164';

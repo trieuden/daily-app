@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 
-router.get('/getAllRoles', async (req, res) => {
+router.get('/getAllNotifications', async (req, res) => {
   try {
-    const sql = 'SELECT * FROM roles';
+    const sql = 'SELECT * FROM notifications';
     db.query(sql, (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -14,10 +14,10 @@ router.get('/getAllRoles', async (req, res) => {
   }
 });
 
-router.get('/getRoleById', async (req, res) => {
+router.get('/getNotificationById', async (req, res) => {
   try {
     const roleId = req.query.id;
-    const sql = 'SELECT * FROM roles WHERE id = ?';
+    const sql = 'SELECT * FROM notifications WHERE id = ?';
     db.query(sql, [roleId], (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -26,11 +26,11 @@ router.get('/getRoleById', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-router.post('/addRole', (req, res) => {
+router.post('/addNotification', (req, res) => {
   try {
-    var data = [req.body.name];
-    var sql = 'INSERT INTO `roles`(`name`) VALUES (?)';
-    db.query(sql, [data], (err, result) => {
+    var data = req.body.data;
+    var sql = 'INSERT INTO `notifications`(`title, content, created_date, status, user_id`) VALUES (?,?,?,?,?)';
+    db.query(sql, [data,title, data.content, data.created_date, data.status, data.user_id], (err, result) => {
       if (err) throw err;
       res.send(result);
     })
@@ -38,10 +38,10 @@ router.post('/addRole', (req, res) => {
     res.status(500).json({ error: error.message });
   }
 })
-router.post('/deleteRole', (req, res) => {
+router.post('/deleteNotification', (req, res) => {
   try {
     var data = [req.body.id];
-    var sql = 'DELETE FROM roles WHERE id = ?';
+    var sql = 'DELETE FROM notifications WHERE id = ?';
     db.query(sql, [data], (err, result) => {
       if (err) throw err;
       res.send(result);

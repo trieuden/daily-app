@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 
-router.get('/getAllNotifications', async (req, res) => {
+router.get('/getAllRoles', async (req, res) => {
   try {
-    const sql = 'SELECT * FROM notifications';
+    const sql = 'SELECT * FROM roles';
     db.query(sql, (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -14,10 +14,10 @@ router.get('/getAllNotifications', async (req, res) => {
   }
 });
 
-router.get('/getNotificationById', async (req, res) => {
+router.get('/getRoleById', async (req, res) => {
   try {
     const roleId = req.query.id;
-    const sql = 'SELECT * FROM notifications WHERE id = ?';
+    const sql = 'SELECT * FROM roles WHERE id = ?';
     db.query(sql, [roleId], (err, result) => {
       if (err) throw err;
       res.send(result);
@@ -26,11 +26,11 @@ router.get('/getNotificationById', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-router.post('/addNotification', (req, res) => {
+router.post('/addRole', (req, res) => {
   try {
-    var data = req.body.data;
-    var sql = 'INSERT INTO `notifications`(`title, content, created_date, status, user_id`) VALUES (?,?,?,?,?)';
-    db.query(sql, [data,title, data.content, data.created_date, data.status, data.user_id], (err, result) => {
+    var data = [req.body.name];
+    var sql = 'INSERT INTO `roles`(`name`) VALUES (?)';
+    db.query(sql, [data], (err, result) => {
       if (err) throw err;
       res.send(result);
     })
@@ -38,10 +38,10 @@ router.post('/addNotification', (req, res) => {
     res.status(500).json({ error: error.message });
   }
 })
-router.post('/deleteNotification', (req, res) => {
+router.post('/deleteRole', (req, res) => {
   try {
     var data = [req.body.id];
-    var sql = 'DELETE FROM notifications WHERE id = ?';
+    var sql = 'DELETE FROM roles WHERE id = ?';
     db.query(sql, [data], (err, result) => {
       if (err) throw err;
       res.send(result);

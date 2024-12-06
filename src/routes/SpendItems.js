@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 
-router.get('/getAllUsers', async (req, res) => {
+router.get('/getAllSpendItems', async (req, res) => {
     try {
-        const sql = 'SELECT * FROM users';
+        const sql = 'SELECT * FROM spend_items';
         db.query(sql, (err, result) => {
             if (err) throw err;
             res.send(result);
@@ -14,11 +14,11 @@ router.get('/getAllUsers', async (req, res) => {
     }
 });
 
-router.get('/getUserById', async (req, res) => {
+router.get('/getSpendItemById', async (req, res) => {
     try {
-        const id = req.query.id;
-        const sql = 'SELECT * FROM users WHERE id = ?';
-        db.query(sql, [id], (err, result) => {
+        const roleId = req.query.id;
+        const sql = 'SELECT * FROM spend_items WHERE id = ?';
+        db.query(sql, [roleId], (err, result) => {
             if (err) throw err;
             res.send(result);
         });
@@ -26,11 +26,11 @@ router.get('/getUserById', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-router.post('/addUser', (req, res) => {
+router.post('/addSpendItem', (req, res) => {
     try {
-        var data = [req.body.data];
-        var sql = 'INSERT INTO `users`(`username, password, name, gender,phone, email, address, image, created_date,status, role_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
-        db.query(sql, [data], (err, result) => {
+        var data = req.body.data;
+        var sql = 'INSERT INTO `spend_items`(spend_id, spend_type_id, price, description) VALUES (?,?,?,?)';
+        db.query(sql, [data.spend_id, data.spend_type_id, data.price, data.description], (err, result) => {
             if (err) throw err;
             res.send(result);
         })
@@ -38,10 +38,10 @@ router.post('/addUser', (req, res) => {
         res.status(500).json({ error: error.message });
     }
 })
-router.post('/deleteUser', (req, res) => {
+router.post('/deleteSpendItem', (req, res) => {
     try {
         var data = [req.body.id];
-        var sql = 'DELETE FROM users WHERE id = ?';
+        var sql = 'DELETE FROM spend_items WHERE id = ?';
         db.query(sql, [data], (err, result) => {
             if (err) throw err;
             res.send(result);

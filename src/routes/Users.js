@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 
-router.get('/getAllIncomeItems', async (req, res) => {
+router.get('/getAllUsers', async (req, res) => {
     try {
-        const sql = 'SELECT * FROM income_items';
+        const sql = 'SELECT * FROM users';
         db.query(sql, (err, result) => {
             if (err) throw err;
             res.send(result);
@@ -14,10 +14,10 @@ router.get('/getAllIncomeItems', async (req, res) => {
     }
 });
 
-router.get('/getIncomeItemById', async (req, res) => {
+router.get('/getUserById', async (req, res) => {
     try {
         const id = req.query.id;
-        const sql = 'SELECT * FROM income_items WHERE id = ?';
+        const sql = 'SELECT * FROM users WHERE id = ?';
         db.query(sql, [id], (err, result) => {
             if (err) throw err;
             res.send(result);
@@ -26,11 +26,11 @@ router.get('/getIncomeItemById', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-router.post('/addIncomeItem', (req, res) => {
+router.post('/addUser', (req, res) => {
     try {
-        var data = req.body.data;
-        var sql = 'INSERT INTO `income_items`(income_id, name, created_date, price) VALUES (?,?,?,?)';
-        db.query(sql, [data.income_id, data.name, data.created_date, data.price], (err, result) => {
+        var data = [req.body.data];
+        var sql = 'INSERT INTO `users`(`username, password, name, gender,phone, email, address, image, created_date,status, role_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
+        db.query(sql, [data], (err, result) => {
             if (err) throw err;
             res.send(result);
         })
@@ -38,10 +38,10 @@ router.post('/addIncomeItem', (req, res) => {
         res.status(500).json({ error: error.message });
     }
 })
-router.post('/deleteIncomeItem', (req, res) => {
+router.post('/deleteUser', (req, res) => {
     try {
         var data = [req.body.id];
-        var sql = 'DELETE FROM income_items WHERE id = ?';
+        var sql = 'DELETE FROM users WHERE id = ?';
         db.query(sql, [data], (err, result) => {
             if (err) throw err;
             res.send(result);
